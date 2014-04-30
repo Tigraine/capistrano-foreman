@@ -10,7 +10,7 @@ Capistrano::Configuration.instance(:must_exist).load do |configuration|
     desc "Export the Procfile to Ubuntu's upstart scripts"
     task :export, roles: :app do
       run "if [[ ! -d #{foreman_upstart_path} ]]; then #{foreman_sudo} mkdir -p #{foreman_upstart_path}; fi"
-      run "cd #{release_path} && #{foreman_sudo} #{foreman_command} export upstart #{foreman_upstart_path} #{format(options)}"
+      run "cd #{current_path} && #{foreman_sudo} #{foreman_command} export upstart #{foreman_upstart_path} #{format(options)}"
     end
 
     desc "Start the application services"
